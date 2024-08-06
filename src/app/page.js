@@ -13,9 +13,9 @@ function Home() {
     (todo) => todo.is_completed === true
   ).length;
   const total_todos = todos.length;
-  console.log(todos);
-  console.log(todos_completed);
-  console.log(total_todos);
+  // console.log(todos);
+  // console.log(todos_completed);
+  // console.log(total_todos);
   return (
     <div className="wrapper">
       <Header />
