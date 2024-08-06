@@ -1,15 +1,23 @@
 // src/components/Form.jsx
 
-function Form({ setTodos }) {
+function Form({ todos, setTodos }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const value = event.target.todo.value;
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      { title: value, id: self.crypto.randomUUID(), is_completed: false },
-    ]);
-    // reset the form
-    event.target.reset();
+    if (value) {
+      const newTodo = {
+        title: value,
+        id: self.crypto.randomUUID(),
+        is_completed: false,
+      };
+      // Update todos state
+      setTodos((prevTodos) => [...prevTodos, newTodo]);
+      // Store updated todo list in local storage
+      const updateTodosList = JSON.stringify([...todos, newTodo]);
+      localStorage.setItem("todos", updateTodosList);
+      // reset the form
+      event.target.reset();
+    }
   };
   return (
     <form className="form" onSubmit={handleSubmit}>
