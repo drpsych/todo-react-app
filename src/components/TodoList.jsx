@@ -1,11 +1,11 @@
 // src/components/TodoList.jsx
 
-function TodoList({ todos }) {
+function TodoList({ todos, setTodos }) {
   return (
     <ol className="todo_list">
       {todos && todos.length > 0 ? (
         todos?.map((item, index) => (
-          <Item key={index} item={item} todos={todos} />
+          <Item key={index} item={item} setTodos={setTodos} />
         ))
       ) : (
         <p>Seems lonely in here, what are you up to?</p>
@@ -14,10 +14,19 @@ function TodoList({ todos }) {
   );
 }
 
-function Item({ item }) {
+function Item({ item, setTodos }) {
+  const completeTodo = () => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === item.id
+          ? { ...todo, is_completed: !todo.is_completed }
+          : todo
+      )
+    );
+  };
   return (
     <li className="todo_item" id={item?.id}>
-      <button className="todo_items_left">
+      <button className="todo_items_left" onClick={completeTodo}>
         <svg
           clipRule="evenodd"
           fillRule="evenodd"
@@ -32,7 +41,9 @@ function Item({ item }) {
         >
           <circle cx="11.998" cy="11.998" fillRule="nonzero" r="9.998" />
         </svg>
-        <p>{item?.title}</p>
+        <p style={item.is_completed ? { textDecoration: "line-through" } : {}}>
+          {item?.title}
+        </p>
       </button>
       <div className="todo_items_right">
         <button>
