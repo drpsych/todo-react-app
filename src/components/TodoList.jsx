@@ -1,6 +1,14 @@
 // src/components/TodoList.jsx
 import React from "react";
 
+/**
+ * Renders a list of todo items.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array<Object>} props.todos - An array of todo items.
+ * @param {function} props.setTodos - A function to update the todo items.
+ * @returns {JSX.Element} - The rendered todo list.
+ */
 function TodoList({ todos, setTodos }) {
   return (
     <ol className="todo_list">
@@ -15,6 +23,15 @@ function TodoList({ todos, setTodos }) {
   );
 }
 
+/**
+ * Renders a single todo item with the ability to edit, delete, and mark as complete.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.item - The todo item to render.
+ * @param {Array<Object>} props.todos - The array of all todo items.
+ * @param {function} props.setTodos - A function to update the todo items.
+ * @returns {JSX.Element} - The rendered todo item.
+ */
 function Item({ item, todos, setTodos }) {
   const [edit, setEdit] = React.useState(false);
   const inputRef = React.useRef(null);
@@ -109,13 +126,23 @@ function Item({ item, todos, setTodos }) {
               width={34}
               height={34}
               stroke="var(--accent-color)"
-              fill={item.is_completed ? "var(--accent-color)" : "#0d0d0d"}
+              fill={
+                item.is_completed
+                  ? "var(--accent-color)"
+                  : "var(--background-color)"
+              }
             >
               <circle cx="11.998" cy="11.998" fillRule="nonzero" r="9.998" />
             </svg>
             <p
               style={
-                item.is_completed ? { textDecoration: "line-through" } : {}
+                item.is_completed
+                  ? {
+                      textDecoration: "line-through",
+                      color: "var(--accent-color)",
+                      transition: "all 0.3s ease",
+                    }
+                  : {}
               }
             >
               {item?.title}
@@ -125,36 +152,40 @@ function Item({ item, todos, setTodos }) {
             <button onClick={handleEdit}>
               <span className="visually-hidden">Edit</span>
               <svg
-                clipRule="evenodd"
-                fillRule="evenodd"
-                strokeLinejoin="round"
-                strokeMiterlimit="2"
+                dataSlot="icon"
+                fill="none"
+                strokeWidth={1.5}
+                stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
                 width={32}
                 height={34}
               >
                 <path
-                  d="m11.25 6c.398 0 .75.352.75.75 0 .414-.336.75-.75.75-1.505 0-7.75 0-7.75 0v12h17v-8.749c0-.414.336-.75.75-.75s.75.336.75.75v9.249c0 .621-.522 1-1 1h-18c-.48 0-1-.379-1-1v-13c0-.481.38-1 1-1zm1.521 9.689 9.012-9.012c.133-.133.217-.329.217-.532 0-.179-.065-.363-.218-.515l-2.423-2.415c-.143-.143-.333-.215-.522-.215s-.378.072-.523.215l-9.027 8.996c-.442 1.371-1.158 3.586-1.264 3.952-.126.433.198.834.572.834.41 0 .696-.099 4.176-1.308zm-2.258-2.392 1.17 1.171c-.704.232-1.274.418-1.729.566zm.968-1.154 7.356-7.331 1.347 1.342-7.346 7.347z"
-                  fillRule="nonzero"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
                 />
               </svg>
             </button>
             <button onClick={handleDelete}>
               <span className="visually-hidden">Delete</span>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                clipRule="evenodd"
-                fillRule="evenodd"
-                strokeLinejoin="round"
-                strokeMiterlimit="2"
+                dataSlot="icon"
+                fill="none"
+                strokeWidth={1.5}
+                stroke="currentColor"
                 viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
                 width={32}
                 height={34}
               >
                 <path
-                  d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
-                  fillRule="nonzero"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
                 />
               </svg>
             </button>

@@ -1,5 +1,13 @@
 // src/components/Form.jsx
 
+/**
+ * Renders a form component that allows users to add new tasks.
+ *
+ * @param {object} props - The component props.
+ * @param {Array} props.todos - The list of todos.
+ * @param {function} props.setTodos - The function to update the todos state.
+ * @returns {JSX.Element} - The form component.
+ */
 function Form({ todos, setTodos }) {
   const handleSubmit = (event) => {
     event.preventDefault();
