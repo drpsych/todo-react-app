@@ -9,6 +9,15 @@ import TodoList from "@/components/TodoList";
 
 function Home() {
   const [todos, setTodos] = React.useState([]);
+  
+  // Retrieve todos from localStorage when the component mounts
+  React.useEffect(() => {
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
   const todos_completed = todos.filter(
     (todo) => todo.is_completed === true
   ).length;
