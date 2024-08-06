@@ -6,7 +6,7 @@ function TodoList({ todos, setTodos }) {
     <ol className="todo_list">
       {todos && todos.length > 0 ? (
         todos?.map((item, index) => (
-          <Item key={index} item={item} setTodos={setTodos} />
+          <Item key={index} item={item} todos={todos} setTodos={setTodos} />
         ))
       ) : (
         <p>Seems lonely in here, what are you up to?</p>
@@ -15,7 +15,7 @@ function TodoList({ todos, setTodos }) {
   );
 }
 
-function Item({ item, setTodos }) {
+function Item({ item, todos, setTodos }) {
   const [edit, setEdit] = React.useState(false);
   const inputRef = React.useRef(null);
 
@@ -28,6 +28,10 @@ function Item({ item, setTodos }) {
       )
     );
   };
+  // Update localStorage after marking todo as completed
+  const updatedTodos = JSON.stringify(todos);
+  localStorage.setItem("todos", updatedTodos);
+
   // When the edit button is clicked we set the value of our editing state to true, which will render our form
   const handleEdit = () => {
     setEdit(true);
@@ -35,10 +39,18 @@ function Item({ item, setTodos }) {
   // when we submit the edit todo form by pressing enter, we also want to set the variable back to false so we can get back our list.
   const handleInputSubmit = (event) => {
     event.preventDefault();
+
+    // Update localStorage after editing todo
+    const updatedTodos = JSON.stringify(todos);
+    localStorage.setItem("todos", updatedTodos);
     setEdit(false);
   };
   // mouse out of the edit form, we also want to set the state back to false
   const handleInputBlur = () => {
+    // Update localStorage after editing todo
+    const updatedTodos = JSON.stringify(todos);
+    localStorage.setItem("todos", updatedTodos);
+
     setEdit(false);
   };
 
@@ -61,6 +73,11 @@ function Item({ item, setTodos }) {
 
   const handleDelete = () => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== item.id));
+    // Update localStorage after deleting todo
+    const updatedTodos = JSON.stringify(
+      todos.filter((todo) => todo.id !== item.id)
+    );
+    localStorage.setItem("todos", updatedTodos);
   };
 
   return (

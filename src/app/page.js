@@ -20,7 +20,7 @@ function Home() {
     <div className="wrapper">
       <Header />
       <TodoHero todos_completed={todos_completed} total_todos={total_todos} />
-      <Form setTodos={setTodos} />
+      <Form todos={todos} setTodos={setTodos} />
       <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
