@@ -2,6 +2,14 @@
 
 import { useEffect } from "react";
 
+/**
+ * Renders a section that displays the progress of completed todos.
+ *
+ * @param {object} props - The component props.
+ * @param {number} props.todos_completed - The number of completed todos.
+ * @param {number} props.total_todos - The total number of todos.
+ * @returns {JSX.Element} - The TodoHero component.
+ */
 function TodoHero({ todos_completed, total_todos }) {
   // Calculate the progress percentage
   const progress = (todos_completed / total_todos) * 100;

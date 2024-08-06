@@ -1,6 +1,14 @@
 // src/components/TodoList.jsx
 import React from "react";
 
+/**
+ * Renders a list of todo items.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array<Object>} props.todos - An array of todo items.
+ * @param {function} props.setTodos - A function to update the todo items.
+ * @returns {JSX.Element} - The rendered todo list.
+ */
 function TodoList({ todos, setTodos }) {
   return (
     <ol className="todo_list">
@@ -15,6 +23,15 @@ function TodoList({ todos, setTodos }) {
   );
 }
 
+/**
+ * Renders a single todo item with the ability to edit, delete, and mark as complete.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.item - The todo item to render.
+ * @param {Array<Object>} props.todos - The array of all todo items.
+ * @param {function} props.setTodos - A function to update the todo items.
+ * @returns {JSX.Element} - The rendered todo item.
+ */
 function Item({ item, todos, setTodos }) {
   const [edit, setEdit] = React.useState(false);
   const inputRef = React.useRef(null);

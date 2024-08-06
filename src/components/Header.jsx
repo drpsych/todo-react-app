@@ -1,5 +1,10 @@
 // src/components/Header.jsx
 
+/**
+ * Renders the header component of the TODO React App.
+ *
+ * @return {JSX.Element} The header component with an SVG icon and a title.
+ */
 function Header() {
   return (
     <header>
