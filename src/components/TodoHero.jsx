@@ -16,8 +16,10 @@ function TodoHero({ todos_completed, total_todos }) {
   // Set the width of the progress bar
   useEffect(() => {
     const progressBar = document.getElementById("progress");
-    progressBar.style.width = `${progress}%`;
-  }, [progress]);
+    const newProgress =
+      total_todos === 0 ? 0 : (todos_completed / total_todos) * 100;
+    progressBar.style.width = `${newProgress}%`;
+  }, [todos_completed, total_todos]);
 
   return (
     <section className="todohero_section">
