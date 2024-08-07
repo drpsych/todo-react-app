@@ -24,8 +24,10 @@ function TodoHero({ todos_completed, total_todos }) {
       <div className="stats_text">
         {todos_completed === 0 ? (
           <p className="text_large">No Tasks Done</p>
-        ) : (
+        ) : todos_completed < total_todos ? (
           <p className="text_large">Tasks Done</p>
+        ) : (
+          <p className="text_large">Congrats</p>
         )}
         {todos_completed === 0 ? (
           <p className="text_small">Get to work!</p>
