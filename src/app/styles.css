@@ -1,5 +1,7 @@
 :root {
   --background-color: #242424;
+  --input-color: #414141;
+  /* --input-color: #2c2c2c; */
   --text-color: #ffffff;
   --border-color: #f4dccb;
   --accent-color: #e362c6;
@@ -11,7 +13,6 @@
     var(--action-color),
     var(--accent-color)
   );
-  --input-color: #2c2c2c;
   --font-normal: 1rem;
   --font-large: 2rem;
   --font-small: 1.5rem;
@@ -65,6 +66,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 70%;
+  height: 100vh;
 }
 
 @media (max-width: 610px) {
@@ -231,4 +233,37 @@ header {
   background-color: transparent;
   border: none;
   color: var(--action-color);
+  transition: all 0.3s ease;
+}
+
+.todo_items_right button:hover {
+  color: var(--accent-green);
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-align: center;
+  align-self: center;
+  max-width: 455px;
+  width: 100%;
+}
+
+.footer nav {
+  margin-top: 20px;
+}
+
+.footer a {
+  color: var(--action-color);
+  margin: 0 10px;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--accent-green);
 }
