@@ -8,10 +8,10 @@ function Footer() {
     <footer className="footer">
       <p>&copy; {currentYear} Todo React App. All rights reserved.</p>
       <nav>
-        <a href="https://www.linkedin.com/in/brutoncole">
+        <a href="https://www.linkedin.com/in/brutoncole" target="_blank">
           <FaLinkedin />
         </a>
-        <a href="https://www.github.com/drspych">
+        <a href="https://www.github.com/drpsych" target="_blank">
           <FaGithub />
         </a>
       </nav>
